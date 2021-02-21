@@ -1,4 +1,4 @@
-package com.example.vinted
+package com.example.miaged
 
 import io.flutter.embedding.android.FlutterActivity
 
