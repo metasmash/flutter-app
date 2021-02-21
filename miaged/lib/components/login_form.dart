@@ -2,7 +2,7 @@ import '../authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignInPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   final TextEditingController loginController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
