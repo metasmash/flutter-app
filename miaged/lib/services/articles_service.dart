@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
 import 'package:loading/loading.dart';
-import 'package:vinted/components/CardCustom.dart';
+import 'package:vinted/components/CardAchat.dart';
 
 class GetArticles extends StatelessWidget {
   final String documentId = '1';
@@ -35,11 +35,11 @@ class GetArticles extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.68,
                   children: detail
                       .map<Widget>((e) => Container(
-                          child: CardCustom(e['id'], e['image'], e['prix'],
-                              e['taille'], e['titre'])))
+                          child: CardAchat(e['id'], e['image'], e['prix'],
+                              e['taille'], e['titre'], e['description'])))
                       .toList(),
                 ),
               ),

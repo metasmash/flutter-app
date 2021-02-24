@@ -20,10 +20,11 @@ class _Profil extends State<Profil> {
           children: [
             Text("Profile"),
             RaisedButton(
+              color: Colors.redAccent,
               onPressed: () {
                 context.read<AuthenticationService>().signOut();
               },
-              child: Text("Sign out"),
+              child: Text("Sign out", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
