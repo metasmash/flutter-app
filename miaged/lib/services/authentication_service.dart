@@ -13,6 +13,7 @@ class AuthenticationService {
           email: email, password: password);
       return "Signed in";
     } on FirebaseAuthException catch (e) {
+      print('Error in login or password');
       return e.message;
     }
   }
