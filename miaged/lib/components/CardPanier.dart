@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vinted/pages/navigation/detail.dart';
 
-class CardAchat extends StatelessWidget {
+class CardPanier extends StatelessWidget {
   final String image;
   final int prix;
   final String taille;
   final String titre;
   final String description;
 
-  CardAchat(this.image, this.prix, this.taille, this.titre, this.description);
+  CardPanier(this.image, this.prix, this.taille, this.titre, this.description);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class CardAchat extends StatelessWidget {
                           Detail(image, prix, taille, titre, description)),
                 )),
             child: Text('Détails'),
-            color: Colors.blueAccent)
+            color: Colors.red)
       ],
     ));
   }

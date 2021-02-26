@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
-import 'package:loading/loading.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:vinted/components/CardAchat.dart';
 
 class GetArticles extends StatelessWidget {
@@ -38,8 +40,8 @@ class GetArticles extends StatelessWidget {
                   childAspectRatio: 0.68,
                   children: detail
                       .map<Widget>((e) => Container(
-                          child: CardAchat(e['id'], e['image'], e['prix'],
-                              e['taille'], e['titre'], e['description'])))
+                          child: CardAchat(e['image'], e['prix'], e['taille'],
+                              e['titre'], e['description'])))
                       .toList(),
                 ),
               ),
@@ -47,10 +49,10 @@ class GetArticles extends StatelessWidget {
           );
         }
 
-        return Loading(
-            indicator: BallSpinFadeLoaderIndicator(),
-            size: 70.0,
-            color: Colors.pink);
+        return LoadingBumpingLine.circle(
+            borderColor: Colors.cyan,
+            backgroundColor: Colors.redAccent,
+            duration: Duration(milliseconds: 80));
       },
     );
   }
