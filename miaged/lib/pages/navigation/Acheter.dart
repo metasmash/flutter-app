@@ -24,7 +24,6 @@ class _Acheter extends State<Acheter> {
 
         if (snapshot.hasData) {
           var data = snapshot.data;
-          print(data);
           return CustomScrollView(
             primary: false,
             slivers: <Widget>[
