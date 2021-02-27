@@ -35,7 +35,7 @@ class UserService {
     }
   }
 
-  void changePassword({newPassword}) {
+  void changePassword({String newPassword}) async {
     try {
       _firebaseAuth.currentUser.updatePassword(newPassword);
     } catch (e) {
