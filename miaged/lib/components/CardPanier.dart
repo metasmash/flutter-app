@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vinted/pages/navigation/detail.dart';
+import 'package:vinted/pages/navigation/Detail.dart';
 
 class CardPanier extends StatelessWidget {
   final String image;
@@ -30,8 +30,12 @@ class CardPanier extends StatelessWidget {
             onPressed: (() => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          Detail(image, prix, taille, titre, description)),
+                      builder: (context) => Detail(
+                          image: image,
+                          prix: prix,
+                          taille: taille,
+                          titre: titre,
+                          description: description)),
                 )),
             child: Text('Détails'),
             color: Colors.red)

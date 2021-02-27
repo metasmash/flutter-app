@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'navigation/Acheter.dart';
+import 'navigation/Boutique.dart';
 import 'navigation/Panier.dart';
 import 'navigation/Profil.dart';
 
@@ -16,7 +16,7 @@ class _HomePage extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Acheter(),
+    Boutique(),
     Panier(),
     Profil(),
   ];

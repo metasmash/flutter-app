@@ -4,15 +4,7 @@ import 'package:loading_animations/loading_animations.dart';
 import 'package:vinted/components/CardAchat.dart';
 import 'package:vinted/services/articles_service.dart';
 
-/// This is the stateful widget that the main application instantiates.
-class Acheter extends StatefulWidget {
-  Acheter({Key key}) : super(key: key);
-
-  @override
-  _Acheter createState() => _Acheter();
-}
-
-class _Acheter extends State<Acheter> {
+class Boutique extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
