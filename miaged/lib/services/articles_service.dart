@@ -1,22 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:miaged/services/user_service.dart';
 
-class Articles {
-  final String image;
-  final int prix;
-  final String taille;
-  final String titre;
-  final String description;
-
-  Articles(this.image, this.prix, this.taille, this.titre, this.description);
-}
+FirebaseFirestore db = FirebaseFirestore.instance;
+String userLogin = UserService.getUsername();
+CollectionReference articles = db.collection('articles');
+CollectionReference panier =
+    db.collection('user').doc('$userLogin').collection('panier');
 
 class ArticleService {
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  static String userLogin = FirebaseAuth.instance.currentUser.email;
-
   Stream<QuerySnapshot> getArticles() {
-    CollectionReference articles = db.collection('articles');
     try {
       return articles.snapshots();
     } catch (e) {
@@ -25,8 +18,6 @@ class ArticleService {
   }
 
   void ajouterAuPanier({image, prix, taille, titre, description}) {
-    CollectionReference panier =
-        db.collection('user').doc('$userLogin').collection('panier');
     panier.add({
       "image": image,
       "prix": prix,
@@ -36,5 +27,19 @@ class ArticleService {
     });
   }
 
-  Stream<QuerySnapshot> getPanier() {}
+  Stream<QuerySnapshot> getPanier() {
+    try {
+      return panier.snapshots();
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  void supprimerArticlePanier({id}) {
+    try {
+      panier.doc(id).delete();
+    } catch (e) {
+      return e.message;
+    }
+  }
 }

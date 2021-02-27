@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
-import 'package:vinted/components/CardAchat.dart';
-import 'package:vinted/services/articles_service.dart';
+import 'package:miaged/components/CardAchat.dart';
+import 'package:miaged/services/articles_service.dart';
 
 class Boutique extends StatelessWidget {
   @override
@@ -28,12 +28,13 @@ class Boutique extends StatelessWidget {
                   childAspectRatio: 0.68,
                   children: data.docs
                       .map<Widget>((e) => Container(
-                          child: CardAchat(
-                              image: e['image'],
-                              prix: e['prix'],
-                              taille: e['taille'],
-                              titre: e['titre'],
-                              description: e['description'])))
+                              child: CardAchat(
+                            image: e['image'],
+                            prix: e['prix'],
+                            taille: e['taille'],
+                            titre: e['titre'],
+                            description: e['description'],
+                          )))
                       .toList(),
                 ),
               ),

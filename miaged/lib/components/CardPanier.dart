@@ -1,15 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vinted/pages/navigation/Detail.dart';
+import 'package:miaged/pages/navigation/Detail.dart';
+import 'package:miaged/services/articles_service.dart';
 
 class CardPanier extends StatelessWidget {
-  final String image;
-  final int prix;
-  final String taille;
-  final String titre;
-  final String description;
+  String image;
+  int prix;
+  String taille;
+  String titre;
+  String description;
+  String id;
 
-  CardPanier(this.image, this.prix, this.taille, this.titre, this.description);
+  CardPanier(
+      {this.image,
+      this.prix,
+      this.taille,
+      this.titre,
+      this.description,
+      this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +35,8 @@ class CardPanier extends StatelessWidget {
           ],
         ),
         RaisedButton(
-            onPressed: (() => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Detail(
-                          image: image,
-                          prix: prix,
-                          taille: taille,
-                          titre: titre,
-                          description: description)),
-                )),
-            child: Text('Détails'),
+            onPressed: (() => ArticleService().supprimerArticlePanier(id: id)),
+            child: Text('Supprimer'),
             color: Colors.red)
       ],
     ));
