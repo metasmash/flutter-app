@@ -17,8 +17,8 @@ class ProfileForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: UserService(FirebaseAuth.instance).getUserInformation(),
+    return FutureBuilder<DocumentSnapshot>(
+        future: UserService(FirebaseAuth.instance).getUserInformation(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("Something went wrong");
@@ -47,45 +47,54 @@ class ProfileForm extends StatelessWidget {
                                 obscureText: true,
                                 autocorrect: false,
                                 enableSuggestions: false,
-                                controller: passwordController
-                                  ..text = data.docs.where('id', '==', '0'),
+                                controller: passwordController,
                                 decoration: InputDecoration(
                                   labelText: "Password",
                                 ),
                               ),
                               TextField(
-                                controller: birthDateController,
+                                controller: birthDateController
+                                  ..text = data['anniversaire'],
                                 decoration: InputDecoration(
                                   labelText: "Anniversaire",
                                 ),
                               ),
                               TextField(
-                                controller: addressController,
+                                controller: addressController
+                                  ..text = data['adresse'],
                                 decoration: InputDecoration(
                                   labelText: "Adresse",
                                 ),
                               ),
                               TextField(
-                                controller: zipCodeController,
+                                controller: zipCodeController
+                                  ..text = '${data['zipcode']}',
                                 decoration: InputDecoration(
                                   labelText: "Code postale",
                                 ),
                               ),
                               TextField(
-                                controller: cityController,
+                                controller: cityController
+                                  ..text = data['ville'],
                                 decoration: InputDecoration(
                                   labelText: "Ville",
                                 ),
                               ),
                               RaisedButton(
                                   onPressed: () {
-                                    context
-                                        .read<AuthenticationService>()
-                                        .signIn(
-                                          email: loginController.text.trim(),
-                                          password:
-                                              passwordController.text.trim(),
-                                        );
+                                    UserService(FirebaseAuth.instance)
+                                        .changePassword(
+                                            newPassword:
+                                                passwordController.text.trim());
+                                    UserService(FirebaseAuth.instance)
+                                        .setUserInformation(
+                                            adresse:
+                                                addressController.text.trim(),
+                                            anniversaire:
+                                                birthDateController.text.trim(),
+                                            ville: cityController.text.trim(),
+                                            zipcode:
+                                                zipCodeController.text.trim());
                                   },
                                   child: Text("Changer les informations"),
                                   color: Colors.blueAccent),

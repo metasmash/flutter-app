@@ -14,15 +14,32 @@ class UserService {
 
   static String getUsername() => FirebaseAuth.instance.currentUser.email;
 
-  Stream<QuerySnapshot> getUserInformation() {
+  Future<DocumentSnapshot> getUserInformation() {
     try {
-      return user.snapshots();
+      return user.doc('0').get();
     } catch (e) {
       return e.message;
     }
   }
 
-  Future<void> changePassword({newPassword}) async {
-    await _firebaseAuth.currentUser.updatePassword(newPassword);
+  void setUserInformation({adresse, anniversaire, ville, zipcode}) {
+    try {
+      user.doc('0').update({
+        "adresse": adresse,
+        "anniversaire": anniversaire,
+        "ville": ville,
+        "zipcode": zipcode
+      });
+    } catch (e) {
+      print(e.message);
+    }
+  }
+
+  void changePassword({newPassword}) {
+    try {
+      _firebaseAuth.currentUser.updatePassword(newPassword);
+    } catch (e) {
+      print(e.message);
+    }
   }
 }
