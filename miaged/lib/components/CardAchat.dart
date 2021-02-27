@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:vinted/pages/navigation/detail.dart';
 
 class CardAchat extends StatelessWidget {
-  final String image;
-  final int prix;
-  final String taille;
-  final String titre;
-  final String description;
+  String image;
+  int prix;
+  String taille;
+  String titre;
+  String description;
 
-  CardAchat(this.image, this.prix, this.taille, this.titre, this.description);
+  CardAchat(
+      {@required this.image,
+      this.prix,
+      this.taille,
+      this.titre,
+      this.description});
 
   @override
   Widget build(BuildContext context) {
